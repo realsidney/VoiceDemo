@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20424B342B19B4DB00166492 /* ChatWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20424B322B19B4DB00166492 /* ChatWindowController.m */; };
+		20424B352B19B4DB00166492 /* ChatWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20424B332B19B4DB00166492 /* ChatWindowController.xib */; };
 		20FED0C32B15F2C9004BF6E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FED0C22B15F2C9004BF6E5 /* AppDelegate.m */; };
 		20FED0C62B15F2C9004BF6E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FED0C52B15F2C9004BF6E5 /* ViewController.m */; };
 		20FED0C82B15F2CA004BF6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FED0C72B15F2CA004BF6E5 /* Assets.xcassets */; };
 		20FED0CB2B15F2CA004BF6E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FED0C92B15F2CA004BF6E5 /* Main.storyboard */; };
 		20FED0CD2B15F2CA004BF6E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FED0CC2B15F2CA004BF6E5 /* main.m */; };
+		20FED0D62B18AB36004BF6E5 /* HNPostKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FED0D52B18AB36004BF6E5 /* HNPostKeyManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20424B302B1972F400166492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		20424B312B19B4DB00166492 /* ChatWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatWindowController.h; sourceTree = "<group>"; };
+		20424B322B19B4DB00166492 /* ChatWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatWindowController.m; sourceTree = "<group>"; };
+		20424B332B19B4DB00166492 /* ChatWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatWindowController.xib; sourceTree = "<group>"; };
 		20FED0BE2B15F2C9004BF6E5 /* VoiceDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FED0C12B15F2C9004BF6E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		20FED0C22B15F2C9004BF6E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -24,6 +31,8 @@
 		20FED0CA2B15F2CA004BF6E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20FED0CC2B15F2CA004BF6E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20FED0CE2B15F2CA004BF6E5 /* VoiceDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoiceDemo.entitlements; sourceTree = "<group>"; };
+		20FED0D42B18AB36004BF6E5 /* HNPostKeyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNPostKeyManager.h; sourceTree = "<group>"; };
+		20FED0D52B18AB36004BF6E5 /* HNPostKeyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNPostKeyManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +46,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20042DA22B19C1F800BCF9EF /* ChatWindow */ = {
+			isa = PBXGroup;
+			children = (
+				20424B312B19B4DB00166492 /* ChatWindowController.h */,
+				20424B322B19B4DB00166492 /* ChatWindowController.m */,
+				20424B332B19B4DB00166492 /* ChatWindowController.xib */,
+			);
+			path = ChatWindow;
+			sourceTree = "<group>";
+		};
 		20FED0B52B15F2C9004BF6E5 = {
 			isa = PBXGroup;
 			children = (
@@ -56,10 +75,14 @@
 		20FED0C02B15F2C9004BF6E5 /* VoiceDemo */ = {
 			isa = PBXGroup;
 			children = (
+				20424B302B1972F400166492 /* Info.plist */,
+				20042DA22B19C1F800BCF9EF /* ChatWindow */,
 				20FED0C12B15F2C9004BF6E5 /* AppDelegate.h */,
 				20FED0C22B15F2C9004BF6E5 /* AppDelegate.m */,
 				20FED0C42B15F2C9004BF6E5 /* ViewController.h */,
 				20FED0C52B15F2C9004BF6E5 /* ViewController.m */,
+				20FED0D42B18AB36004BF6E5 /* HNPostKeyManager.h */,
+				20FED0D52B18AB36004BF6E5 /* HNPostKeyManager.m */,
 				20FED0C72B15F2CA004BF6E5 /* Assets.xcassets */,
 				20FED0C92B15F2CA004BF6E5 /* Main.storyboard */,
 				20FED0CC2B15F2CA004BF6E5 /* main.m */,
@@ -127,6 +150,7 @@
 			files = (
 				20FED0C82B15F2CA004BF6E5 /* Assets.xcassets in Resources */,
 				20FED0CB2B15F2CA004BF6E5 /* Main.storyboard in Resources */,
+				20424B352B19B4DB00166492 /* ChatWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				20FED0C62B15F2C9004BF6E5 /* ViewController.m in Sources */,
+				20424B342B19B4DB00166492 /* ChatWindowController.m in Sources */,
+				20FED0D62B18AB36004BF6E5 /* HNPostKeyManager.m in Sources */,
 				20FED0CD2B15F2CA004BF6E5 /* main.m in Sources */,
 				20FED0C32B15F2C9004BF6E5 /* AppDelegate.m in Sources */,
 			);
@@ -284,9 +310,12 @@
 				DEVELOPMENT_TEAM = 5L9RVY3BW9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VoiceDemo/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need mic to input";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Need mic to input";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -310,9 +339,12 @@
 				DEVELOPMENT_TEAM = 5L9RVY3BW9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VoiceDemo/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need mic to input";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Need mic to input";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

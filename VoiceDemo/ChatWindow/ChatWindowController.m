@@ -1,18 +1,17 @@
 //
-//  ViewController.m
+//  ChatWindowController.m
 //  VoiceDemo
 //
-//  Created by wyt_M1 on 11/28/23.
+//  Created by wyt_M1 on 12/1/23.
 //
 
-#import "ViewController.h"
+#import "ChatWindowController.h"
 #import <Speech/Speech.h>
 #import <AVFoundation/AVFoundation.h>
 #import "HNPostKeyManager.h"
 #import <Carbon/Carbon.h>
-#import "ChatWindowController.h"
 
-@interface ViewController ()
+@interface ChatWindowController ()
 
 @property (nonatomic, strong) SFSpeechRecognizer *speechRecognizer;
 @property (nonatomic, strong) AVAudioEngine *audioEngine;
@@ -21,23 +20,19 @@
 
 @property (nonatomic, strong) NSString *transcription;
 
-@property (weak) IBOutlet NSTextField *assistantLabel;
-@property (weak) IBOutlet NSTextField *userLabel;
-
 //tts
 @property (nonatomic, strong) AVSpeechSynthesizer *speechSynthesizer;
 @property (nonatomic, strong) AVSpeechSynthesisVoice *speechSynthesisVoice;
 
-@property (nonatomic, strong) ChatWindowController *chatWindowController;
-
 @end
 
-@implementation ViewController
+@implementation ChatWindowController
 
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)windowDidLoad {
+    [super windowDidLoad];
+    
+    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
     //语音输入
     self.speechRecognizer = [[SFSpeechRecognizer alloc] initWithLocale:[NSLocale localeWithLocaleIdentifier:@"zh-CN"]];
     
@@ -52,18 +47,11 @@
     
     self.speechSynthesizer = [[AVSpeechSynthesizer alloc] init];
     self.speechSynthesisVoice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CN"];
-        
-    self.assistantLabel.maximumNumberOfLines = 0;
-    self.userLabel.maximumNumberOfLines = 0;
+    
+    
 }
-
-- (void)viewDidAppear {
-    [super viewDidAppear];
-    self.view.window.movable = YES;
-    self.view.window.movableByWindowBackground = YES;
-}
-
-- (IBAction)handleRecognize:(id)sender {
+- (IBAction)chat:(id)sender {
+    
     if (![self.speechRecognizer isAvailable]) {
         NSLog(@"语音识别不可用");
         return;
@@ -78,84 +66,55 @@
 }
 
 - (IBAction)send:(id)sender {
-
-    if (self.transcription.length == 0) {
-        return;
-    }
     
-    [self stopSpeechRecognition];
-    [self praseCommand:self.transcription isAssitant:NO];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HNPostKeyManager postEventWithKeycode:0x1b eventFlags:kCGEventFlagMaskCommand];
+//    });
     
-//    if (!_chatWindowController) {
-//        _chatWindowController = [[ChatWindowController alloc] initWithWindowNibName:@"ChatWindowController"];
-//        [_chatWindowController.window orderFront:nil];
-//        _chatWindowController.window.level = NSFloatingWindowLevel;
-//        [_chatWindowController.window center];
-////        CGPoint mouseLoc = [NSEvent mouseLocation];
-////        CGRect rect = CGRectMake(mouseLoc.x - 195, mouseLoc.y - 75, 390, 150);
-////        _radialMenuWindowController.tabletCfg = tabletConfig;
-////        [_radialMenuWindowController.window setFrame:rect display:YES];
+//    self.transcription = @"缩小画布";
+//    if (self.transcription.length == 0) {
+//        return;
 //    }
+//    
+//    [self stopSpeechRecognition];
+//    [self praseCommand:self.transcription];
     
 }
 
-- (void)praseCommand:(NSString *)command isAssitant:(BOOL)isAssitant {
+- (void)praseCommand:(NSString *)command {
 
     NSString *resultStr = @"";
     
-    if ([command isEqualTo:@"画笔工具"]) {
-        resultStr = @"画笔工具";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_B eventFlags:0];
-        
-    } else if ([command isEqualTo:@"橡皮擦工具"]) {
-        resultStr = @"橡皮擦工具";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_E eventFlags:0];
-        
-    } else if ([command isEqualTo:@"套索工具"]) {
-        resultStr = @"套索工具";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_L eventFlags:0];
-        
-    } else if ([command isEqualTo:@"吸管工具"]) {
-        resultStr = @"吸管工具";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_I eventFlags:0];
-        
-    } else if ([command isEqualTo:@"笔刷放大"]) {
-        resultStr = @"笔刷放大";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_RightBracket eventFlags:0];
-        
-    } else if ([command isEqualTo:@"笔刷缩小"]) {
-        resultStr = @"笔刷缩小";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_LeftBracket eventFlags:0];
-        
-    } else if ([command isEqualTo:@"画布放大"]) {
-        resultStr = @"画布放大";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Equal eventFlags:kCGEventFlagMaskCommand];
-        
-    } else if ([command isEqualTo:@"画布缩小"]) {
-        resultStr = @"画布缩小";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Minus eventFlags:kCGEventFlagMaskCommand];
-        
-    } else if ([command isEqualTo:@"还原"]) {
-        resultStr = @"还原";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Z eventFlags:kCGEventFlagMaskCommand];
-
-    } else if ([command isEqualTo:@"重做"]) {
-        resultStr = @"重做";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Z eventFlags:kCGEventFlagMaskCommand | kCGEventFlagMaskShift];
-
-    } else if ([command isEqualTo:@"保存"]) {
-        resultStr = @"保存";
-        [HNPostKeyManager postEventWithKeycode:kVK_ANSI_S eventFlags:kCGEventFlagMaskCommand];
-
+    if ([command containsString:@"缩小画布"]) {
+        NSLog(@"缩小画布===");
+        resultStr = @"缩小画布";
+        [HNPostKeyManager postEventWithKeycode:0x1b eventFlags:kCGEventFlagMaskCommand];
+    } else if ([self.transcription containsString:@"放大画布"]) {
+        NSLog(@"放大画布===");
+        resultStr = @"放大画布";
+        [HNPostKeyManager postEventWithKeycode:0x1b eventFlags:kCGEventFlagMaskCommand];
+    } else if ([self.transcription containsString:@"缩小笔刷"]) {
+        NSLog(@"缩小笔刷===");
+        resultStr = @"缩小笔刷";
+        [HNPostKeyManager postEventWithKeycode:0x1b eventFlags:kCGEventFlagMaskCommand];
+    } else if ([self.transcription containsString:@"放大笔刷"]) {
+        NSLog(@"放大笔刷===");
+        resultStr = @"放大笔刷";
+        [HNPostKeyManager postEventWithKeycode:0x1b eventFlags:kCGEventFlagMaskCommand];
+    } else if ([self.transcription containsString:@"橡皮"]) {
+        NSLog(@"橡皮擦===");
+        resultStr = @"橡皮擦";
+        [HNPostKeyManager postEventWithKeycode:0x1b eventFlags:kCGEventFlagMaskCommand];
+    } else if ([self.transcription containsString:@"笔刷工具"]) {
+        NSLog(@"笔刷工具===");
+        resultStr = @"笔刷工具";
     } else {
-        if (!isAssitant) {
-            [self sendRequestPrompt:self.transcription];
-        }
+        [self sendRequestPrompt:self.transcription];
     }
     
     if (resultStr.length > 0) {
         
-        self.assistantLabel.stringValue = resultStr;
+//        self.assistantLabel.stringValue = resultStr;
         
         AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:resultStr];
         utterance.voice = self.speechSynthesisVoice;
@@ -202,11 +161,13 @@
             NSLog(@"识别结果: %@", transcription);
         
             wSelf.transcription = transcription;
-            wSelf.userLabel.stringValue = transcription;
+            
+//            wSelf.userLabel.stringValue = transcription;
 
             if (error || isFinal) {
 //                [self stopSpeechRecognition];
                 NSLog(@"isFinal, 识别结果: %@", transcription);
+
             }
 
         }
@@ -241,7 +202,7 @@
     NSDictionary *dic = @{
         @"model": @"gpt-3.5-turbo",
         @"messages": @[
-            @{@"role": @"system", @"content": @"假装你是一个photoshop助手，你有如下功能：画笔工具；橡皮擦工具；套索工具；吸管工具；笔刷放大；笔刷缩小；画布放大；画布缩小；还原；重做；保存。你会收到指令，如果用户表述不明确，比如画布，你就要问清楚是缩小画布还是放大画布，如果你判断出了上述指令，你就直接输出这个指令名字，不要输出其他任何内容，我们现在开始。"},
+            @{@"role": @"system", @"content": @"假装你是一个photoshop助手，你有如下功能：缩小画布；放大画布；缩小笔刷；放大笔刷；橡皮擦；笔刷工具。你会收到指令，如果用户表述不明确，比如画布，你就要问清楚是缩小画布还是放大画布，如果你判断出了上述指令，你就直接输出这个指令名字，不要输出其他任何内容，我们现在开始。"},
             @{@"role": @"user", @"content": prompt}
         ]
     };
@@ -257,13 +218,14 @@
             NSLog(@"content====%@", json[@"choices"][0][@"message"][@"content"]);
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.assistantLabel.stringValue = json[@"choices"][0][@"message"][@"content"];
+//                self.assistantLabel.stringValue = json[@"choices"][0][@"message"][@"content"];
                 
-                AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:self.assistantLabel.stringValue];
-                utterance.voice = self.speechSynthesisVoice;
-                utterance.rate = AVSpeechUtteranceDefaultSpeechRate;
-                [self.speechSynthesizer speakUtterance:utterance];
-                [self praseCommand:self.transcription isAssitant:YES];
+//                AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:self.assistantLabel.stringValue];
+//                utterance.voice = self.speechSynthesisVoice;
+//                utterance.rate = AVSpeechUtteranceDefaultSpeechRate;
+//                [self.speechSynthesizer speakUtterance:utterance];
+                [HNPostKeyManager postEventWithKeycode:0x1b eventFlags:kCGEventFlagMaskCommand];
+
             });
 
         }

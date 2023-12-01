@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202FEC5D2B19DFAA0015FF41 /* NSObject+Spelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 202FEC5C2B19DFAA0015FF41 /* NSObject+Spelling.m */; };
 		20424B342B19B4DB00166492 /* ChatWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20424B322B19B4DB00166492 /* ChatWindowController.m */; };
 		20424B352B19B4DB00166492 /* ChatWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20424B332B19B4DB00166492 /* ChatWindowController.xib */; };
 		20FED0C32B15F2C9004BF6E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FED0C22B15F2C9004BF6E5 /* AppDelegate.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		202FEC5B2B19DFAA0015FF41 /* NSObject+Spelling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Spelling.h"; sourceTree = "<group>"; };
+		202FEC5C2B19DFAA0015FF41 /* NSObject+Spelling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Spelling.m"; sourceTree = "<group>"; };
 		20424B302B1972F400166492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		20424B312B19B4DB00166492 /* ChatWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatWindowController.h; sourceTree = "<group>"; };
 		20424B322B19B4DB00166492 /* ChatWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatWindowController.m; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				20042DA22B19C1F800BCF9EF /* ChatWindow */,
 				20FED0C12B15F2C9004BF6E5 /* AppDelegate.h */,
 				20FED0C22B15F2C9004BF6E5 /* AppDelegate.m */,
+				202FEC5B2B19DFAA0015FF41 /* NSObject+Spelling.h */,
+				202FEC5C2B19DFAA0015FF41 /* NSObject+Spelling.m */,
 				20FED0C42B15F2C9004BF6E5 /* ViewController.h */,
 				20FED0C52B15F2C9004BF6E5 /* ViewController.m */,
 				20FED0D42B18AB36004BF6E5 /* HNPostKeyManager.h */,
@@ -162,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20FED0C62B15F2C9004BF6E5 /* ViewController.m in Sources */,
+				202FEC5D2B19DFAA0015FF41 /* NSObject+Spelling.m in Sources */,
 				20424B342B19B4DB00166492 /* ChatWindowController.m in Sources */,
 				20FED0D62B18AB36004BF6E5 /* HNPostKeyManager.m in Sources */,
 				20FED0CD2B15F2CA004BF6E5 /* main.m in Sources */,

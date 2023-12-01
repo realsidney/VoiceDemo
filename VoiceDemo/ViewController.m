@@ -11,6 +11,7 @@
 #import "HNPostKeyManager.h"
 #import <Carbon/Carbon.h>
 #import "ChatWindowController.h"
+#import "NSObject+Spelling.h"
 
 @interface ViewController ()
 
@@ -55,12 +56,14 @@
         
     self.assistantLabel.maximumNumberOfLines = 0;
     self.userLabel.maximumNumberOfLines = 0;
+    
 }
 
 - (void)viewDidAppear {
     [super viewDidAppear];
     self.view.window.movable = YES;
     self.view.window.movableByWindowBackground = YES;
+ 
 }
 
 - (IBAction)handleRecognize:(id)sender {
@@ -78,7 +81,7 @@
 }
 
 - (IBAction)send:(id)sender {
-
+  
     if (self.transcription.length == 0) {
         return;
     }
@@ -103,47 +106,47 @@
 
     NSString *resultStr = @"";
     
-    if ([command isEqualTo:@"画笔工具"]) {
+    if ([command isEqualTo:@"画笔工具"] || [command.spelling containsString:@"笔工具".spelling]) {
         resultStr = @"画笔工具";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_B eventFlags:0];
         
-    } else if ([command isEqualTo:@"橡皮擦工具"]) {
+    } else if ([command isEqualTo:@"橡皮擦工具"] || [command.spelling containsString:@"橡皮".spelling]) {
         resultStr = @"橡皮擦工具";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_E eventFlags:0];
         
-    } else if ([command isEqualTo:@"套索工具"]) {
+    } else if ([command isEqualTo:@"套索工具"] || [command.spelling containsString:@"套s".spelling]) {
         resultStr = @"套索工具";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_L eventFlags:0];
         
-    } else if ([command isEqualTo:@"吸管工具"]) {
+    } else if ([command isEqualTo:@"吸管工具"] || [command.spelling containsString:@"吸g".spelling]) {
         resultStr = @"吸管工具";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_I eventFlags:0];
         
-    } else if ([command isEqualTo:@"笔刷放大"]) {
+    } else if ([command isEqualTo:@"笔刷放大"] || [command.spelling containsString:@"笔刷放大".spelling]) {
         resultStr = @"笔刷放大";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_RightBracket eventFlags:0];
         
-    } else if ([command isEqualTo:@"笔刷缩小"]) {
+    } else if ([command isEqualTo:@"笔刷缩小"] || [command.spelling containsString:@"笔刷缩小".spelling]) {
         resultStr = @"笔刷缩小";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_LeftBracket eventFlags:0];
         
-    } else if ([command isEqualTo:@"画布放大"]) {
+    } else if ([command isEqualTo:@"画布放大"] || [command.spelling containsString:@"画布放大".spelling]) {
         resultStr = @"画布放大";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Equal eventFlags:kCGEventFlagMaskCommand];
         
-    } else if ([command isEqualTo:@"画布缩小"]) {
+    } else if ([command isEqualTo:@"画布缩小"] || [command.spelling containsString:@"画布缩小".spelling]) {
         resultStr = @"画布缩小";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Minus eventFlags:kCGEventFlagMaskCommand];
         
-    } else if ([command isEqualTo:@"还原"]) {
+    } else if ([command isEqualTo:@"还原"] || [command.spelling containsString:@"还原".spelling]) {
         resultStr = @"还原";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Z eventFlags:kCGEventFlagMaskCommand];
 
-    } else if ([command isEqualTo:@"重做"]) {
+    } else if ([command isEqualTo:@"重做"] || [command.spelling containsString:@"重做".spelling]) {
         resultStr = @"重做";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_Z eventFlags:kCGEventFlagMaskCommand | kCGEventFlagMaskShift];
 
-    } else if ([command isEqualTo:@"保存"]) {
+    } else if ([command isEqualTo:@"保存"] || [command.spelling containsString:@"保存".spelling]) {
         resultStr = @"保存";
         [HNPostKeyManager postEventWithKeycode:kVK_ANSI_S eventFlags:kCGEventFlagMaskCommand];
 

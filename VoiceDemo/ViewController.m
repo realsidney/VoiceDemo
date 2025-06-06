@@ -236,7 +236,7 @@
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    NSString *authValue = [NSString stringWithFormat: @"Bearer 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"];
+    NSString *authValue = [NSString stringWithFormat: @"Bearer yourAPIKey"];
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     request.HTTPMethod = @"POST";
 //    request.timeoutInterval = 10;
